@@ -6,16 +6,16 @@ import Island from "../models/Island";
 const Home = () => {
   const adjustIslandForScreenSize = () => {
     let screenScale, screenPosition;
-    let islandRotation = [0.1, 4.7, 0];
+    // let islandRotation = [0.2, 24, 2];
 
     if (window.innerWidth < 768) {
       screenScale = [0.9, 0.9, 0.9];
       screenPosition = [0, -6.5, -43.4];
     } else {
-      screenScale = [1, 1, 1];
+      screenScale = [0.25, 0.25, 0.25];
       screenPosition = [0, -6.5, -43.4];
     }
-    return [screenScale, screenPosition, islandRotation];
+    return [screenScale, screenPosition];
   };
 
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
@@ -35,7 +35,11 @@ const Home = () => {
           <pointLight />
           <hemisphereLight />
 
-          <Island position={islandPosition} scale={islandScale} />
+          <Island
+            position={islandPosition}
+            scale={islandScale}
+            // rotation={islandRotation}
+          />
         </Suspense>
       </Canvas>
     </section>
