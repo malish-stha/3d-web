@@ -1,7 +1,9 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useRef, useEffect } from "react";
 import Loader from "../Components/Loader";
 import Island from "../models/Island";
+import IslandTwo from "../models/Island2";
+import Sky from "../models/Sky";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
@@ -16,13 +18,32 @@ const Home = () => {
       screenPosition = [0, -5.5, -43.4];
     } else {
       screenScale = [0.5, 0.5, 0.5];
-      screenPosition = [-8, 8, -55];
+
+      screenPosition = [-3, 8, -55];
     }
     return [screenScale, screenPosition, islandRotation];
   };
 
   const [islandScale, islandPosition, islandRotation] =
     adjustIslandForScreenSize();
+
+  //Model Two
+  const adjustIslandTwoForScreenSize = () => {
+    let screenScale, screenPosition;
+    let islandRotation = [0.4, 0, 0];
+
+    if (window.innerWidth < 768) {
+      screenScale = [0.9, 0.9, 0.9];
+      screenPosition = [0, -5.5, -43.4];
+    } else {
+      screenScale = [0.01, 0.01, 0.01];
+      screenPosition = [-10, -2, -40];
+    }
+    return [screenScale, screenPosition, islandRotation];
+  };
+
+  const [islandTwoScale, islandTwoPosition, islandTwoRotation] =
+    adjustIslandTwoForScreenSize();
 
   return (
     <section className="w-full h-screen relative">
@@ -50,6 +71,35 @@ const Home = () => {
             position={islandPosition}
             scale={islandScale}
             rotation={islandRotation}
+            isRotating={isRotating}
+            setIsRotating={setIsRotating}
+            setCurrentStage={setCurrentStage}
+          />
+        </Suspense>
+      </Canvas>{" "}
+      <Canvas
+        className={`w-full h-screen bg-transparent ${
+          isRotating ? "cursor-grabbing" : "cursor-grab"
+        }`}
+        camera={{ near: 0.1, far: 1000 }}
+      >
+        <Suspense fallback={<Loader />}>
+          <directionalLight position={[1, 1, 1]} intensity={2} />
+          <ambientLight intensity={0.5} />
+
+          <hemisphereLight
+            skyColor="#b1e1ff"
+            groundColor="#000000"
+            intensity={1}
+            position={[0, 50, 0]}
+          />
+
+          <Sky />
+
+          <IslandTwo
+            position={islandTwoPosition}
+            scale={islandTwoScale}
+            rotation={islandTwoRotation}
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
