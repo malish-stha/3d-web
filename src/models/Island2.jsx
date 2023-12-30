@@ -11,12 +11,8 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { a } from "@react-spring/three";
 import islandSceneTwo from "../assets/3D/island2.glb";
-const IslandTwo = ({
-  isRotating,
-  setIsRotating,
-  setCurrentStage,
-  ...props
-}) => {
+
+const IslandTwo = (props) => {
   const islandTwoRef = useRef();
 
   const { nodes, materials } = useGLTF(islandSceneTwo);
