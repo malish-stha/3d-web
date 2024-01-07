@@ -3,7 +3,8 @@ import { Suspense, useState, useRef, useEffect } from "react";
 import Loader from "../Components/Loader";
 import Island from "../models/Island";
 import IslandTwo from "../models/Island2";
-import Sky from "../models/Sky";
+import Dragon from "./Dragon";
+// import Sky from "../models/Sky";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
@@ -24,8 +25,25 @@ const Home = () => {
     return [screenScale, screenPosition, islandRotation];
   };
 
+  const adjustDragonForScreenSize = () => {
+    let screenScale, screenPosition;
+
+    if (window.innerWidth < 768) {
+      screenScale = [1.5, 1.5, 1.5];
+      screenPosition = [0, -1.5, 0];
+    } else {
+      screenScale = [3, 3, 3];
+
+      screenPosition = [0, -4, -4];
+    }
+    return [screenScale, screenPosition];
+  };
+
   const [islandScale, islandPosition, islandRotation] =
     adjustIslandForScreenSize();
+
+  const [dragonScale, dragonPosition, dragonRotation] =
+    adjustDragonForScreenSize();
 
   //Model Two
   const adjustIslandTwoForScreenSize = () => {
@@ -58,13 +76,19 @@ const Home = () => {
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={1} />
 
           <hemisphereLight
             skyColor="#b1e1ff"
             groundColor="#000000"
-            intensity={1}
+            intensity={2}
             position={[0, 50, 0]}
+          />
+          <Dragon
+            isRotating={isRotating}
+            dragonScale={dragonScale}
+            dragonPosition={dragonPosition}
+            rotation={[0, 20, 0]}
           />
 
           <Island
@@ -93,8 +117,6 @@ const Home = () => {
             intensity={1}
             position={[0, 50, 0]}
           />
-
-          <Sky />
 
           <IslandTwo
             scale={islandTwoScale}
