@@ -4,6 +4,8 @@ import Loader from "../Components/Loader";
 import Island from "../models/Island";
 import IslandTwo from "../models/Island2";
 import Dragon from "./Dragon";
+import { useSpring } from "@react-spring/three";
+
 // import Sky from "../models/Sky";
 
 const Home = () => {
@@ -58,6 +60,21 @@ const Home = () => {
       screenPosition = [20, -20, -60];
     }
     return [screenScale, screenPosition, islandRotation];
+  };
+
+  // Camera animation state
+  const [{ position: cameraPosition }, setCamera] = useSpring(() => ({
+    position: [0, 0, 0],
+  }));
+  const handleMouseClick = () => {
+    // Set your desired target camera position
+    const targetCameraPosition = [-10, 0, 0];
+
+    // Animate camera to the target position on mouse click
+    setCamera({
+      position: targetCameraPosition,
+      config: { mass: 5, tension: 400, friction: 20 },
+    });
   };
 
   const [islandTwoScale, islandTwoPosition, islandTwoRotation] =
