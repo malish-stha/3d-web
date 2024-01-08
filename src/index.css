@@ -167,17 +167,30 @@ body:has(.card[data-color="green"]:hover) {
 
 /* Neo Brutalism */
 .neo-brutalism-blue {
-  background: #2b77e7;
+  background: rgba(43, 119, 231, 0.5); /* Adjust alpha for more transparency */
   position: relative;
   border-radius: 10px;
-  border: #2b77e7;
-  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
-    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
+  border: rgba(
+    43,
+    119,
+    231,
+    0.5
+  ); /* Match the border color with background for consistency */
+  box-shadow: 0.6vmin 0.6vmin rgba(51, 108, 193, 0.5),
+    1vmin 1vmin rgba(0, 146, 219, 0.5), 1vmin 1vmin rgba(0, 146, 219, 0.5),
+    0.65vmin 1vmin rgba(0, 146, 219, 0.5), 1vmin 0.65vmin rgba(0, 146, 219, 0.5);
 }
 
 .neo-brutalism-white {
-  background: #fff;
-  border: #fff;
-  box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
-    0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+  background: rgba(255, 255, 255, 0.7); /* Use rgba to add opacity */
+  border: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Match the border color with background for consistency */
+  box-shadow: 0.6vmin 0.6vmin rgba(255, 255, 255, 0.7),
+    1vmin 1vmin rgba(210, 228, 255, 0.7), 1vmin 1vmin rgba(210, 228, 255, 0.7),
+    0.65vmin 1vmin rgba(210, 228, 255, 0.7),
+    1vmin 0.65vmin rgba(210, 228, 255, 0.7);
 }
