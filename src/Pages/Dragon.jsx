@@ -18,16 +18,16 @@ const Dragon = ({ isRotating, ...props }) => {
 
   useEffect(() => {
     // Ensure that both animations are loaded
-    if (actions["Dragon_Boss_05_idle"] && actions["Dragon_Boss_05_skill05"]) {
+    if (actions["Dragon_Boss_05_idle"] && actions["Dragon_Boss_05_skill01"]) {
       // Stop die animation when rotating
-      actions["Dragon_Boss_05_skill05"].stop();
+      actions["Dragon_Boss_05_skill01"].stop();
 
       // Play the idle animation when rotating
       if (isRotating) {
         actions["Dragon_Boss_05_idle"].play();
       } else {
         // Play the die animation when not rotating
-        actions["Dragon_Boss_05_skill05"].play();
+        actions["Dragon_Boss_05_skill01"].play();
       }
     }
   }, [actions, isRotating]);
@@ -35,7 +35,7 @@ const Dragon = ({ isRotating, ...props }) => {
   useEffect(() => {
     return () => {
       actions["Dragon_Boss_05_idle"]?.stop();
-      actions["Dragon_Boss_05_skill05"]?.stop();
+      actions["Dragon_Boss_05_skill01"]?.stop();
     };
   }, [actions]);
 
