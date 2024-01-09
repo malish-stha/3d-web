@@ -4,7 +4,6 @@ import Loader from "../Components/Loader";
 import Island from "../models/Island";
 import IslandTwo from "../models/Island2";
 import Dragon from "./Dragon";
-
 import Sky from "../models/Sky";
 import HomeInfo from "../Components/HomeInfo";
 
@@ -88,6 +87,7 @@ const Home = () => {
               position={[0, 50, 0]}
             />
             <Sky />
+
             <Dragon
               isRotating={isRotating}
               dragonScale={dragonScale}
