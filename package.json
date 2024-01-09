@@ -12,7 +12,9 @@
   "dependencies": {
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.92.7",
-    "@react-three/fiber": "^8.15.12",
+    "@react-three/fiber": "^8.15.13",
+    "framer-motion": "^10.17.9",
+    "framer-motion-3d": "^10.17.9",
     "gsap": "^3.12.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
