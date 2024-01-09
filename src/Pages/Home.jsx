@@ -66,72 +66,76 @@ const Home = () => {
     adjustIslandTwoForScreenSize();
 
   return (
-    <section className="w-full h-screen relative">
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        {currentStage && <HomeInfo currentStage={currentStage} />}
-      </div>
-      <Canvas
-        className={`w-full h-screen bg-transparent ${
-          isRotating ? "cursor-grabbing" : "cursor-grab"
-        }`}
-        camera={{ near: 0.1, far: 1000 }}
-      >
-        <Suspense fallback={<Loader />}>
-          <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={1} />
+    <>
+      <section className="w-full h-screen relative">
+        <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+          {currentStage && <HomeInfo currentStage={currentStage} />}
+        </div>
+        <Canvas
+          className={`w-full h-screen bg-transparent ${
+            isRotating ? "cursor-grabbing" : "cursor-grab"
+          }`}
+          camera={{ near: 0.1, far: 1000 }}
+        >
+          <Suspense fallback={<Loader />}>
+            <directionalLight position={[1, 1, 1]} intensity={2} />
+            <ambientLight intensity={1} />
 
-          <hemisphereLight
-            skyColor="#b1e1ff"
-            groundColor="#000000"
-            intensity={2}
-            position={[0, 50, 0]}
-          />
-          <Sky />
-          <Dragon
-            isRotating={isRotating}
-            dragonScale={dragonScale}
-            dragonPosition={dragonPosition}
-            rotation={[0, 20, 0]}
-          />
+            <hemisphereLight
+              skyColor="#b1e1ff"
+              groundColor="#000000"
+              intensity={2}
+              position={[0, 50, 0]}
+            />
+            <Sky />
+            <Dragon
+              isRotating={isRotating}
+              dragonScale={dragonScale}
+              dragonPosition={dragonPosition}
+              rotation={[0, 20, 0]}
+            />
 
-          <Island
-            scale={islandScale}
-            position={islandPosition}
-            rotation={islandRotation}
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            setCurrentStage={setCurrentStage}
-          />
-        </Suspense>
-      </Canvas>{" "}
-      <Canvas
-        className={`w-full h-screen bg-transparent ${
-          isRotating ? "cursor-grabbing" : "cursor-grab"
-        }`}
-        camera={{ near: 0.1, far: 1000 }}
-      >
-        <Suspense fallback={<Loader />}>
-          <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
+            <Island
+              scale={islandScale}
+              position={islandPosition}
+              rotation={islandRotation}
+              isRotating={isRotating}
+              setIsRotating={setIsRotating}
+              setCurrentStage={setCurrentStage}
+            />
+          </Suspense>
+        </Canvas>{" "}
+      </section>
+      <section className="w-full h-screen relative">
+        <Canvas
+          className={`w-full h-screen bg-transparent ${
+            isRotating ? "cursor-grabbing" : "cursor-grab"
+          }`}
+          camera={{ near: 0.1, far: 1000 }}
+        >
+          <Suspense fallback={<Loader />}>
+            <directionalLight position={[1, 1, 1]} intensity={2} />
+            <ambientLight intensity={0.5} />
 
-          <hemisphereLight
-            skyColor="#b1e1ff"
-            groundColor="#000000"
-            intensity={1}
-            position={[0, 50, 0]}
-          />
+            <hemisphereLight
+              skyColor="#b1e1ff"
+              groundColor="#000000"
+              intensity={1}
+              position={[0, 50, 0]}
+            />
 
-          <IslandTwo
-            scale={islandTwoScale}
-            position={islandTwoPosition}
-            rotation={islandTwoRotation}
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            setCurrentStage={setCurrentStage}
-          />
-        </Suspense>
-      </Canvas>
-    </section>
+            <IslandTwo
+              scale={islandTwoScale}
+              position={islandTwoPosition}
+              rotation={islandTwoRotation}
+              isRotating={isRotating}
+              setIsRotating={setIsRotating}
+              setCurrentStage={setCurrentStage}
+            />
+          </Suspense>
+        </Canvas>
+      </section>
+    </>
   );
 };
 
