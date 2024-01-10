@@ -1,8 +1,7 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState, useRef, useEffect } from "react";
+import { Suspense, useState } from "react";
 import Loader from "../Components/Loader";
 import Island from "../models/Island";
-import IslandTwo from "../models/Island2";
 import Dragon from "./Dragon";
 import Sky from "../models/Sky";
 import HomeInfo from "../Components/HomeInfo";
@@ -46,24 +45,6 @@ const Home = () => {
   const [dragonScale, dragonPosition, dragonRotation] =
     adjustDragonForScreenSize();
 
-  //Model Two
-  const adjustIslandTwoForScreenSize = () => {
-    let screenScale, screenPosition;
-    let islandRotation = [0.4, 0, 0];
-
-    if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
-      screenPosition = [0, -5.5, -43.4];
-    } else {
-      screenScale = [0.05, 0.05, 0.05];
-      screenPosition = [20, -20, -60];
-    }
-    return [screenScale, screenPosition, islandRotation];
-  };
-
-  const [islandTwoScale, islandTwoPosition, islandTwoRotation] =
-    adjustIslandTwoForScreenSize();
-
   return (
     <>
       <section className="w-full h-screen relative">
@@ -105,35 +86,6 @@ const Home = () => {
             />
           </Suspense>
         </Canvas>{" "}
-      </section>
-      <section className="w-full h-screen relative">
-        <Canvas
-          className={`w-full h-screen bg-transparent ${
-            isRotating ? "cursor-grabbing" : "cursor-grab"
-          }`}
-          camera={{ near: 0.1, far: 1000 }}
-        >
-          <Suspense fallback={<Loader />}>
-            <directionalLight position={[1, 1, 1]} intensity={2} />
-            <ambientLight intensity={0.5} />
-
-            <hemisphereLight
-              skyColor="#b1e1ff"
-              groundColor="#000000"
-              intensity={1}
-              position={[0, 50, 0]}
-            />
-
-            <IslandTwo
-              scale={islandTwoScale}
-              position={islandTwoPosition}
-              rotation={islandTwoRotation}
-              isRotating={isRotating}
-              setIsRotating={setIsRotating}
-              setCurrentStage={setCurrentStage}
-            />
-          </Suspense>
-        </Canvas>
       </section>
     </>
   );
